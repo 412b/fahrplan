@@ -77,6 +77,8 @@ Item {
                 id: trainTypeLabel
                 text: model.trainType
                 width: parent.width
+                wrapMode: Text.NoWrap
+                truncationMode: TruncationMode.Fade
             }
 
             Label {
