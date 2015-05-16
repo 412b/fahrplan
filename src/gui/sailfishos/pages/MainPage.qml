@@ -69,10 +69,9 @@ Page {
                     updateButtonVisibility();
                 }
             }
-            MenuItem {
+            MenuLabel {
                 id: currentBackend
                 text: fahrplanBackend.parserShortName
-                enabled: false
             }
         }
 
