@@ -21,60 +21,42 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Fahrplan 1.0
 
-Item {
+ListItem {
     id: root
     property ListView listView: ListView.view
     width: listView.width
-    property bool menuOpen: contextMenu.parent === root
     signal stationSelected()
-    height: menuOpen ? contextMenu.height + contentItem.height : contentItem.height
+    contentHeight: Theme.itemSizeSmall
+    showMenuOnPressAndHold: false
 
-    BackgroundItem {
-        id: contentItem
-        width: parent.width
-
-        Label {
-            id: lbl_name
-            anchors {
-                left: parent.left
-                leftMargin: Theme.paddingMedium
-                rightMargin: Theme.paddingLarge
-                right: lbl_miscinfo.left
-                verticalCenter: parent.verticalCenter
-            }
-            text: model.name
+    Label {
+        id: lbl_name
+        anchors {
+            left: parent.left
+            leftMargin: Theme.paddingLarge
+            rightMargin: model.miscInfo ? Theme.paddingMedium : 0
+            right: lbl_miscinfo.left
+            verticalCenter: parent.verticalCenter
         }
-        Label {
-            id: lbl_miscinfo
-            anchors {
-                right: parent.right
-                rightMargin: Theme.paddingMedium
-                verticalCenter: parent.verticalCenter
-            }
-            color: Theme.secondaryColor
-            text: model.miscInfo
-        }
-
-        onClicked: {
-            listView.model.selectStation(stationSelect.type, model.index);
-            root.stationSelected();
-        }
-        onPressAndHold: {
-            contextMenu.show(root);
-        }
+        text: model.name
     }
 
-    ContextMenu {
-        id: contextMenu
-        MenuItem {
-            text: model.isFavorite ? qsTr("Remove from favorites") : qsTr("Add to favorites")
-            onClicked: {
-                if (model.isFavorite) {
-                    listView.model.removeFromFavorites(model.index);
-                } else {
-                    listView.model.addToFavorites(model.index);
-                }
-            }
+    Label {
+        id: lbl_miscinfo
+        anchors {
+            right: parent.right
+            rightMargin: Theme.paddingLarge
+            verticalCenter: parent.verticalCenter
         }
+        color: Theme.secondaryColor
+        text: model.miscInfo
     }
+
+    onClicked: {
+        listView.model.selectStation(stationSelect.type, model.index);
+        root.stationSelected();
+    }
+
+    onPressAndHold: showMenu({model: listView.model, favorite: model.isFavorite, index: model.index})
+
 }
