@@ -37,6 +37,7 @@ Page {
     property FahrplanBackend fahrplanBackend: null
 
     SilicaFlickable {
+        id: listView
         anchors.fill: parent
         contentHeight: column.height
         contentWidth: parent.width
@@ -65,6 +66,14 @@ Page {
                         value: searchField.text.trim()
                     }
                 }
+
+                Item {
+                    Connections {
+                        target: listView
+                        onDragStarted: if (searchField.focus) searchField.focus = false;
+                    }
+                }
+
                 IconButton {
                     id: gpsButton
                     width: icon.width
