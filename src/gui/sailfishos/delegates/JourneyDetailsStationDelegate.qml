@@ -141,6 +141,7 @@ Item {
             leftMargin: Theme.paddingSmall
             verticalCenter: parent.verticalCenter
             right: parent.right
+            rightMargin: Theme.paddingMedium
         }
         height: lbl_station_name.height + lbl_station_info.height
 
