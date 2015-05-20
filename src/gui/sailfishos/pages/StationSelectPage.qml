@@ -45,7 +45,7 @@ Page {
 
         Column {
             id: column
-            spacing: Theme.paddingLarge
+            spacing: 0
             width: parent.width
 
             PageHeader {
@@ -78,50 +78,44 @@ Page {
                 }
             }
 
-            Column {
-                visible: (fahrplanBackend.stationSearchResults.count > 0)
+            ListView {
+                model: fahrplanBackend.stationSearchResults
                 width: parent.width
+                height: contentHeight
+                visible: count > 0
+                interactive: false
 
-                SectionHeader {
+                currentIndex: -1
+
+                header: SectionHeader {
                     text: qsTr("Search")
                 }
 
-               ListView {
-                    model: fahrplanBackend.stationSearchResults
-                    width: parent.width
-                    height: contentHeight
-                    interactive: false
-
-                    currentIndex: -1
-
-                    delegate: StationDelegate {
-                        onStationSelected:  {
-                            pageStack.pop();
-                        }
+                delegate: StationDelegate {
+                    menu: stationContextMenu
+                    onStationSelected:  {
+                        pageStack.pop();
                     }
                 }
             }
 
-            Column {
+            ListView {
+                model: fahrplanBackend.favorites
                 width: parent.width
-                visible: (fahrplanBackend.favorites.count > 0)
+                height: contentHeight
+                interactive: false
+                visible: count > 0
 
-                SectionHeader {
+                currentIndex: -1
+
+                header: SectionHeader {
                     text: qsTr("Favorites")
                 }
 
-                ListView {
-                    model: fahrplanBackend.favorites
-                    width: parent.width
-                    height: contentHeight
-                    interactive: false
-
-                    currentIndex: -1
-
-                    delegate: StationDelegate {
-                        onStationSelected:  {
-                            pageStack.pop();
-                        }
+                delegate: StationDelegate {
+                    menu: stationContextMenu
+                    onStationSelected:  {
+                        pageStack.pop();
                     }
                 }
             }
@@ -133,6 +127,28 @@ Page {
             case PageStatus.Activating:
                 gpsButton.visible = fahrplanBackend.parser.supportsGps();
                 break;
+        }
+    }
+
+    Component {
+        id: stationContextMenu
+        ContextMenu {
+            id: contextMenu
+
+            property variant model
+            property bool favorite
+            property int index
+
+            MenuItem {
+                text: favorite ? qsTr("Remove from favorites") : qsTr("Add to favorites")
+                onClicked: {
+                    if (favorite) {
+                        model.removeFromFavorites(index);
+                    } else {
+                        model.addToFavorites(index);
+                    }
+                }
+            }
         }
     }
 
