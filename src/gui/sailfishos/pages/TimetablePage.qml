@@ -25,35 +25,23 @@ import "../delegates"
 Page {
     id: timetablePage
 
-    SilicaFlickable {
+    SilicaListView {
+        id: listView
         anchors.fill: parent
-        contentHeight: column.height
-        contentWidth: parent.width
+        width: parent.width
+        visible: !indicator.visible
+
+        model:  fahrplanBackend.timetable
+
+        header: PageHeader {
+            title: fahrplanBackend.mode === FahrplanBackend.ArrivalMode ? qsTr("Arrivals") : qsTr("Departures")
+        }
+
+        delegate: TimetableEntryDelegate {
+
+        }
 
         VerticalScrollDecorator {}
-        Column {
-            id: column
-            spacing: Theme.paddingLarge
-            width: parent.width
-
-            PageHeader {
-                title: fahrplanBackend.mode === FahrplanBackend.ArrivalMode ? qsTr("Arrivals") : qsTr("Departures")
-            }
-
-            ListView {
-                id: listView
-                width: parent.width
-                height: contentHeight
-                interactive: false
-                visible: !indicator.visible
-
-                model:  fahrplanBackend.timetable
-
-                delegate: TimetableEntryDelegate {
-
-                }
-            }
-        }
     }
 
 
