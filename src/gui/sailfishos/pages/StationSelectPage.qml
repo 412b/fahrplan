@@ -23,9 +23,9 @@ import QtPositioning 5.0
 import Fahrplan 1.0
 import "../delegates"
 
-Dialog {
+Page {
     id: stationSelect
-    canAccept: false
+    //canAccept: false
 
     property string searchString
 
@@ -96,7 +96,7 @@ Dialog {
 
                     delegate: StationDelegate {
                         onStationSelected:  {
-                            stationSelect.close();
+                            pageStack.pop();
                         }
                     }
                 }
@@ -120,7 +120,7 @@ Dialog {
 
                     delegate: StationDelegate {
                         onStationSelected:  {
-                            stationSelect.close();
+                            pageStack.pop();
                         }
                     }
                 }
