@@ -26,11 +26,63 @@ Page {
     id: journeyDetailsResultsPage
 
     property JourneyDetailResultList currentResult;
+    property string journeyTitle
+    property string journeyDate
+    property string journeyDuration
 
-    SilicaFlickable {
+    SilicaListView {
+        id: listView
         anchors.fill: parent
-        contentHeight: column.height
-        contentWidth: parent.width
+        width: parent.width
+        visible: !indicator.visible
+
+        model: journeyDetailResultModel
+
+        header: Item {
+            width: parent.width
+            height: journeyStations.height + Theme.paddingLarge
+
+            PageHeader {
+                id: journeyStations
+                width: parent.width
+                title: journeyTitle
+            }
+
+            Label {
+                id: lbljourneyDate
+                color: Theme.secondaryColor
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.paddingMedium
+                    top: parent.top
+                    topMargin: 80
+                }
+                width: ((parent.width / 3) * 2) - 20
+                wrapMode: Text.WordWrap
+                text: journeyDate
+                //textFormat: Text.PlainText
+            }
+
+            Label {
+                id: lbljourneyDuration
+                color: Theme.secondaryColor
+                anchors {
+                    right: parent.right
+                    rightMargin: Theme.paddingMedium
+                    left: lbljourneyDate.right
+                    top: parent.top
+                    topMargin: 80
+                }
+                width: (parent.width / 3) - 20
+                horizontalAlignment: Text.AlignRight
+                text: journeyDuration
+                textFormat: Text.PlainText
+            }
+        }
+
+        delegate: JourneyDetailsDelegate {
+
+        }
 
         VerticalScrollDecorator {}
 
@@ -48,86 +100,15 @@ Page {
                 }
             }
         }
-
-        Column {
-            id: column
-            spacing: Theme.paddingLarge
-            width: parent.width
-
-            Item {
-                width: parent.width
-                height: journeyStations.height + Theme.paddingLarge
-
-                PageHeader {
-                    id: journeyStations
-                    width: parent.width
-                }
-
-                Label {
-                    id: lbljourneyDate
-                    color: Theme.secondaryColor
-                    anchors {
-                        left: parent.left
-                        leftMargin: Theme.paddingMedium
-                        top: parent.top
-                        topMargin: 80
-                    }
-                    width: ((parent.width / 3) * 2) - 20
-                    wrapMode: Text.WordWrap
-                }
-
-                Label {
-                    id: lbljourneyDuration
-                    color: Theme.secondaryColor
-                    anchors {
-                        right: parent.right
-                        rightMargin: Theme.paddingMedium
-                        left: lbljourneyDate.right
-                        top: parent.top
-                        topMargin: 80
-                    }
-                    width: (parent.width / 3) - 20
-                    horizontalAlignment: Text.AlignRight
-                }
-            }
-
-            Row {
-                id: listHead
-                width: parent.width
-                visible: !indicator.visible
-
-                anchors {
-                    leftMargin: Theme.paddingMedium
-                    rightMargin: Theme.paddingMedium
-                    left: parent.left
-                    right: parent.right
-                }
-
-            }
-
-            ListView {
-                id: listView
-                width: parent.width
-                height: contentHeight
-                interactive: false
-                visible: !indicator.visible
-
-                model: journeyDetailResultModel
-
-                delegate: JourneyDetailsDelegate {
-
-                }
-            }
-        }
     }
 
     onStatusChanged: {
         switch (status) {
             case PageStatus.Activating:
                 indicator.visible = true;
-                journeyStations.title = qsTr("Searching...");
-                lbljourneyDate.text = "";
-                lbljourneyDuration.text = "";
+                journeyTitle = qsTr("Searching...");
+                journeyDate = "";
+                journeyDuration = "";
                 break;
         }
     }
@@ -159,7 +140,7 @@ Page {
             console.log(result.count);
 
             if (result.count > 0) {
-                journeyStations.title = result.viaStation.length == 0 ? qsTr("<b>%1</b> to <b>%2</b>").arg(result.departureStation).arg(result.arrivalStation) : qsTr("<b>%1</b> via <b>%3</b> to <b>%2</b>").arg(result.departureStation).arg(result.arrivalStation).arg(result.viaStation);
+                journeyTitle = result.viaStation.length == 0 ? qsTr("<b>%1</b> to <b>%2</b>").arg(result.departureStation).arg(result.arrivalStation) : qsTr("<b>%1</b> via <b>%3</b> to <b>%2</b>").arg(result.departureStation).arg(result.arrivalStation).arg(result.viaStation);
                 var departureDate = Qt.formatDate(result.departureDateTime);
                 var arrivalDate = Qt.formatDate(result.arrivalDateTime);
 
@@ -168,19 +149,22 @@ Page {
                 }
 
 
-                lbljourneyDate.text = departureDate + " " + Qt.formatTime(result.departureDateTime, Qt.DefaultLocaleShortDate) + " - <br/>" +
+                journeyDate = departureDate + " " + Qt.formatTime(result.departureDateTime, Qt.DefaultLocaleShortDate) + " - <br/>" +
                                       arrivalDate + " " + Qt.formatTime(result.arrivalDateTime, Qt.DefaultLocaleShortDate);
 
-                lbljourneyDuration.text = qsTr("Dur.: %1").arg(result.duration);
+                journeyDuration = qsTr("Dur.: %1").arg(result.duration);
 
                 journeyDetailResultModel.clear();
                 for (var i = 0; i < result.count; i++) {
                     var item = result.getItem(i);
-
-                    var nextItem = null;
-                    if (i < result.count -1) {
-                        nextItem = result.getItem(i+1);
+                    if (item === null) {
+                        console.log(i, item, result.count, result)
                     }
+
+                    var isStart = (i === 0);
+                    var isStop = (i === result.count - 1);
+
+                    var nextItem = isStop ? null : result.getItem(i+1);
 
                     /*
                     console.log("-------------" + i);
@@ -193,9 +177,6 @@ Page {
                         console.log(nextItem.arrivalStation);
                     }
                     */
-
-                    var isStart = (i == 0);
-                    var isStop = (i == result.count -1);
 
                     //Add first departure Station and the train
                     if (isStart) {

@@ -238,7 +238,7 @@ Page {
             arrivalButton.visible = true;
             currentButton.visible = false;
             directionButton.visible = false;
-            pageStack.pushAttached(journeyResultsPage, {})
+            pageStack.pushAttached(Qt.resolvedUrl("JourneyResultsPage.qml"), {})
         }
         if (searchmode == 1) {
             viaButton.visible = false;
@@ -246,7 +246,7 @@ Page {
             arrivalButton.visible = false;
             currentButton.visible = true;
             directionButton.visible = fahrplanBackend.parser.supportsTimeTableDirection();
-            pageStack.pushAttached(timetablePage, {})
+            pageStack.pushAttached(Qt.resolvedUrl("TimetablePage.qml"), {})
         }
     }
 
@@ -270,14 +270,6 @@ Page {
             modeSelect.currentIndex = 2;
             return;
         }
-    }
-
-    TimetablePage {
-        id: timetablePage
-    }
-
-    JourneyResultsPage {
-        id: journeyResultsPage
     }
 
     ContextMenu {
