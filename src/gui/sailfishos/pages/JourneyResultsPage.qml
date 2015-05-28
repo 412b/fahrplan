@@ -99,7 +99,7 @@ Page {
         VerticalScrollDecorator {}
 
         PullDownMenu {
-            enabled: (indicator.visible === false)
+            visible: !indicator.visible
             MenuItem {
                 text: qsTr("Earlier")
                 enabled: (indicator.visible === false)
@@ -111,7 +111,7 @@ Page {
         }
 
         PushUpMenu {
-            enabled: (indicator.visible === false)
+            visible: !indicator.visible
             MenuItem {
                 text: qsTr("Later")
                 onClicked: {
