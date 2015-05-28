@@ -25,6 +25,7 @@ ApplicationWindow {
     id: mainWindow
     initialPage: Qt.resolvedUrl("pages/MainPage.qml")
     cover: Qt.resolvedUrl("Cover.qml")
+    allowedOrientations: Orientation.All
 
     FahrplanBackend {
         id: fahrplanBackend

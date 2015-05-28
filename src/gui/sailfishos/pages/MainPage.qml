@@ -24,6 +24,7 @@ import Fahrplan 1.0
 Page {
     property int searchmode : 0
     id: mainPage
+    allowedOrientations: Orientation.All
 
     canNavigateForward: {
         if (searchmode == 0) {

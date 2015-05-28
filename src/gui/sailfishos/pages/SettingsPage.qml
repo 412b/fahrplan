@@ -23,7 +23,10 @@ import Fahrplan 1.0
 
 Page {
     id: settingsPage
+
     property FahrplanBackend fahrplanBackend: null
+
+    allowedOrientations: Orientation.All
 
     SilicaFlickable {
         anchors.fill: parent

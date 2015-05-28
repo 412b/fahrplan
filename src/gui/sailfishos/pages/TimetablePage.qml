@@ -25,6 +25,8 @@ import "../delegates"
 Page {
     id: timetablePage
 
+    allowedOrientations: Orientation.All
+
     SilicaListView {
         id: listView
         anchors.fill: parent

@@ -28,6 +28,8 @@ Page {
     property string journeyTitle
     property string journeyDate
 
+    allowedOrientations: Orientation.All
+
     SilicaListView {
         id: listView
         anchors.fill: parent

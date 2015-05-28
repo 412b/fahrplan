@@ -29,6 +29,8 @@ Page {
 
     property string searchString
 
+    allowedOrientations: Orientation.All
+
     onSearchStringChanged: {
         fahrplanBackend.findStationsByName(searchString);
     }

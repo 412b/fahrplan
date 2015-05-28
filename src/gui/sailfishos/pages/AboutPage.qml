@@ -24,7 +24,10 @@ import "../../about.js" as About
 
 Page {
     id: aboutPage
+
     property FahrplanBackend fahrplanBackend: null
+
+    allowedOrientations: Orientation.All
 
     SilicaFlickable {
         anchors.fill: parent
