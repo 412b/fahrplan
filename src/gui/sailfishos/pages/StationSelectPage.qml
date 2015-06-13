@@ -111,11 +111,11 @@ Page {
             }
 
             ListView {
+                id: favoritesList
                 model: fahrplanBackend.favorites
                 width: parent.width
                 height: contentHeight
                 interactive: false
-                visible: count > 0
 
                 currentIndex: -1
 
@@ -128,6 +128,11 @@ Page {
                     onStationSelected:  {
                         pageStack.pop();
                     }
+                }
+
+                ViewPlaceholder {
+                    enabled: favoritesList.model.count === 0
+                    text: qsTr("Click and hold in the search results to add or remove a station as a favorite")
                 }
             }
         }
