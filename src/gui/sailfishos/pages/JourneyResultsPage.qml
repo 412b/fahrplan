@@ -38,54 +38,10 @@ Page {
 
         model: indicator.visible ? undefined : journeyResultModel
 
-        header: Item {
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-            height: childrenRect.height + Theme.paddingLarge
-
-            PageHeader {
-                id: journeyDesc
-                title: journeyTitle
-                description: journeyDate
-            }
-
-            Row {
-                id: listHead
-                width: parent.width
-                visible: listView.visible
-
-                anchors {
-                    leftMargin: Theme.paddingMedium
-                    rightMargin: Theme.paddingMedium
-                    left: parent.left
-                    right: parent.right
-                    top: journeyDesc.bottom
-                }
-
-                Label {
-                    text: qsTr("Dep.")
-                    width: (parent.width - 3) / 4
-                }
-
-                Label {
-                    text: qsTr("Arr.")
-                    width: (parent.width - 3) / 4
-                }
-
-                Label {
-                    horizontalAlignment: Text.AlignHCenter
-                    text: qsTr("Dur.")
-                    width: (parent.width - 3) / 4
-                }
-
-                Label {
-                    horizontalAlignment: Text.AlignHCenter
-                    text: qsTr("Trans.")
-                    width: (parent.width - 3) / 4
-                }
-            }
+        header: PageHeader {
+            id: journeyDesc
+            title: journeyTitle
+            //description: Format.formatDate(fahrplanBackend.dateTime, Format.Timepoint)//journeyDate
         }
 
         delegate: JourneyDelegate {
@@ -93,6 +49,68 @@ Page {
                 //pageStack.push(detailsResultsPage);
                 pageStack.push(Qt.resolvedUrl("JourneyDetailsResultsPage.qml"), {})
                 fahrplanBackend.parser.getJourneyDetails(model.id);
+            }
+        }
+
+        section {
+            property: "date"
+            delegate: Item {
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+
+                height: childrenRect.height + Theme.paddingLarge
+
+                SectionHeader {
+                    id: sectionName
+                    text: section
+                    textFormat: Text.PlainText
+                }
+                Row {
+                    id: listHead
+                    width: parent.width
+                    visible: !indicator.visible
+
+                    anchors {
+                        leftMargin: Theme.paddingMedium
+                        rightMargin: Theme.paddingMedium
+                        left: parent.left
+                        right: parent.right
+                        top: sectionName.bottom
+                    }
+
+                    Label {
+                        text: qsTr("Dep.")
+                        width: (parent.width - 3) / 4
+                        color: Theme.secondaryColor
+                        textFormat: Text.PlainText
+                    }
+
+                    Label {
+                        text: qsTr("Arr.")
+                        width: (parent.width - 3) / 4
+                        color: Theme.secondaryColor
+                        textFormat: Text.PlainText
+                    }
+
+                    Label {
+                        horizontalAlignment: Text.AlignHCenter
+                        text: qsTr("Dur.")
+                        width: (parent.width - 3) / 4
+                        color: Theme.secondaryColor
+                        textFormat: Text.PlainText
+                    }
+
+                    Label {
+                        horizontalAlignment: Text.AlignHCenter
+                        text: qsTr("Trans.")
+                        width: (parent.width - 3) / 4
+                        color: Theme.secondaryColor
+                        textFormat: Text.PlainText
+                    }
+                }
             }
         }
 
@@ -143,6 +161,7 @@ Page {
                     indicator.visible = true;
                     errorMsg.visible = false;
                     fahrplanBackend.parser.cancelRequest();
+                    fahrplanBackend.parser.clearJourney();
                 }
                 break;
         }
@@ -176,6 +195,7 @@ Page {
                 var item = result.getItem(i);
                 journeyResultModel.append({
                     "id": item.id,
+                    "date": Format.formatDate(item.date, Format.DateMedium),
                     "departureTime": item.departureTime,
                     "arrivalTime": item.arrivalTime,
                     "trainType": item.trainType,

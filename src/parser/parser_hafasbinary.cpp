@@ -573,7 +573,7 @@ void ParserHafasBinary::parseSearchJourney(QNetworkReply *networkReply)
                 lineNames.removeDuplicates();
 
                 JourneyResultItem *item = new JourneyResultItem(lastJourneyResultList);
-                item->setDate(journeyDate);
+                item->setDate(inlineResults->getItem(0)->departureDateTime().date());
                 item->setId(connectionId);
                 item->setTransfers(QString::number(numChanges));
                 item->setDuration(formatDuration(durationTime));
