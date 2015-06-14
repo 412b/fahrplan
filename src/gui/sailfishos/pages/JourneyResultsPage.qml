@@ -165,7 +165,6 @@ Page {
         onParserJourneyResult: {
             console.log("Got results");
             console.log(result.count);
-
             indicator.visible = false;
             errorMsg.enabled = false;
             journeyTitle = result.viaStation.length == 0 ? qsTr("<b>%1</b> to <b>%2</b>").arg(result.departureStation).arg(result.arrivalStation) : qsTr("<b>%1</b> via <b>%3</b> to <b>%2</b>").arg(result.departureStation).arg(result.arrivalStation).arg(result.viaStation)
