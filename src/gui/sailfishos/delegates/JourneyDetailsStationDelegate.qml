@@ -139,7 +139,7 @@ Item {
         anchors {
             left: icon_station.right
             leftMargin: Theme.paddingSmall
-            verticalCenter: parent.verticalCenter
+            verticalCenter: icon_station.verticalCenter
             right: parent.right
             rightMargin: Theme.paddingMedium
         }
