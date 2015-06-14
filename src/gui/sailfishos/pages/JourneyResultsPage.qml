@@ -38,6 +38,11 @@ Page {
 
         model: indicator.visible ? undefined : journeyResultModel
 
+        ViewPlaceholder {
+          id: errorMsg
+          text: ""
+        }
+
         header: PageHeader {
             id: journeyDesc
             title: journeyTitle
@@ -116,10 +121,6 @@ Page {
 
         VerticalScrollDecorator {}
 
-        ViewPlaceholder {
-          id: errorMsg
-        }
-
         PullDownMenu {
             visible: !indicator.visible
             MenuItem {
@@ -152,14 +153,14 @@ Page {
                     indicator.visible = true;
                     journeyTitle = qsTr("Searching...");
                     journeyDate = "";
-                    errorMsg.visible = false;
+                    errorMsg.enabled = false;
                     fahrplanBackend.searchJourney();
                 }
                 break;
             case PageStatus.Deactivating:
                 if (pageStack.depth === 1) {
                     indicator.visible = true;
-                    errorMsg.visible = false;
+                    errorMsg.enabled = false;
                     fahrplanBackend.parser.cancelRequest();
                     fahrplanBackend.parser.clearJourney();
                 }
@@ -207,12 +208,13 @@ Page {
         }
 
         onParserErrorOccured: {
-            console.log("Got error")
-            console.log(msg)
-            errorMsg.enabled = true;
+            console.log("Got error");
+            console.log(msg);
+            journeyResultModel.clear();
             indicator.visible = false;
-            journeyTitle = qsTr("Error");
             errorMsg.text = msg;
+            errorMsg.enabled = true;
+            //journeyTitle = qsTr("Error");
         }
     }
 
