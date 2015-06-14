@@ -42,44 +42,15 @@ Page {
 
         header: Item {
             width: parent.width
-            height: journeyStations.height + Theme.paddingLarge
+            height: journeyStations.height - Theme.paddingLarge
 
             PageHeader {
                 id: journeyStations
                 width: parent.width
                 title: journeyTitle
+                description: journeyDate + "<br/>" + journeyDuration
             }
 
-            Label {
-                id: lbljourneyDate
-                color: Theme.secondaryColor
-                anchors {
-                    left: parent.left
-                    leftMargin: Theme.paddingMedium
-                    top: parent.top
-                    topMargin: 80
-                }
-                width: ((parent.width / 3) * 2) - 20
-                wrapMode: Text.WordWrap
-                text: journeyDate
-                //textFormat: Text.PlainText
-            }
-
-            Label {
-                id: lbljourneyDuration
-                color: Theme.secondaryColor
-                anchors {
-                    right: parent.right
-                    rightMargin: Theme.paddingMedium
-                    left: lbljourneyDate.right
-                    top: parent.top
-                    topMargin: 80
-                }
-                width: (parent.width / 3) - 20
-                horizontalAlignment: Text.AlignRight
-                text: journeyDuration
-                textFormat: Text.PlainText
-            }
         }
 
         delegate: JourneyDetailsDelegate {
@@ -90,7 +61,7 @@ Page {
 
         PushUpMenu {
             id: pushUpMenu
-            visible: (indicator.visible === false) && (fahrplanBackend.supportsCalendar)
+            visible: !indicator.visible && fahrplanBackend.supportsCalendar
 
             MenuItem {
                 id: addToCalendar
@@ -143,16 +114,16 @@ Page {
 
             if (result.count > 0) {
                 journeyTitle = result.viaStation.length == 0 ? qsTr("<b>%1</b> to <b>%2</b>").arg(result.departureStation).arg(result.arrivalStation) : qsTr("<b>%1</b> via <b>%3</b> to <b>%2</b>").arg(result.departureStation).arg(result.arrivalStation).arg(result.viaStation);
-                var departureDate = Qt.formatDate(result.departureDateTime);
-                var arrivalDate = Qt.formatDate(result.arrivalDateTime);
+                var departureDate = Format.formatDate(result.departureDateTime, Format.DateMedium);
+                var arrivalDate = Format.formatDate(result.arrivalDateTime, Format.DateMedium);
 
-                if (departureDate == arrivalDate) {
+                if (departureDate === arrivalDate) {
                     arrivalDate = "";
                 }
 
 
-                journeyDate = departureDate + " " + Qt.formatTime(result.departureDateTime, Qt.DefaultLocaleShortDate) + " - <br/>" +
-                                      arrivalDate + " " + Qt.formatTime(result.arrivalDateTime, Qt.DefaultLocaleShortDate);
+                journeyDate = departureDate + " " + Format.formatDate(result.departureDateTime, Format.TimeValue) + " - " +
+                                      arrivalDate + " " + Format.formatDate(result.arrivalDateTime, Format.TimeValue);
 
                 journeyDuration = qsTr("Dur.: %1").arg(result.duration);
 
