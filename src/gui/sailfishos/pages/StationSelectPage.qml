@@ -159,7 +159,11 @@ Page {
                 text: favorite ? qsTr("Remove from favorites") : qsTr("Add to favorites")
                 onClicked: {
                     if (favorite) {
-                        model.removeFromFavorites(index);
+                        var idx = index;
+                        var m = model;
+                        contextMenu.parent.remorseAction(qsTr("Removing favorite..."), function() {
+                            m.removeFromFavorites(idx);
+                        });
                     } else {
                         model.addToFavorites(index);
                     }
