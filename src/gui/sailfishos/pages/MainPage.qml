@@ -173,7 +173,7 @@ Page {
             ValueButton {
                 id: datePickerButton
                 label: qsTr("Date")
-                value: Qt.formatDate(fahrplanBackend.dateTime)
+                value: Format.formatDate(fahrplanBackend.dateTime, Format.DateMedium)
                 onClicked: {
                     var dialog = pageStack.push("Sailfish.Silica.DatePickerDialog", {
                         date: fahrplanBackend.dateTime
@@ -189,15 +189,16 @@ Page {
                     })
                 }
             }
+
             ValueButton {
                 id: timePickerButton
                 label: qsTr("Time")
-                value: Qt.formatTime(fahrplanBackend.dateTime, Qt.DefaultLocaleShortDate)
+                value: Format.formatDate(fahrplanBackend.dateTime, Format.TimeValue)
                 onClicked: {
                     var dialog = pageStack.push("Sailfish.Silica.TimePickerDialog", {
-                        hour: Qt.formatDateTime ( fahrplanBackend.dateTime, "hh" ),
-                        minute: Qt.formatDateTime ( fahrplanBackend.dateTime, "mm" ),
-                        hourMode: fahrplanBackend.timeFormat24h() ? DateTime.TwentyFourHours : DateTime.TwelveHours
+                        hour: fahrplanBackend.dateTime.getHours(),
+                        minute: fahrplanBackend.dateTime.getMinutes(),
+                        hourMode: DateTime.DefaultHours//fahrplanBackend.timeFormat24h() ? DateTime.TwentyFourHours : DateTime.TwelveHours
                     })
 
                     dialog.accepted.connect(function() {
