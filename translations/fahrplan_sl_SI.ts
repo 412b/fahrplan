@@ -2082,16 +2082,6 @@ Dodala aplikacija Fahrplan. Pred potovanjem prosimo preverite točnost informaci
         <source>Adding &apos;%1&apos; to favorites</source>
         <translation>Dodajam &apos;%1&apos; k priljubljenim</translation>
     </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Remove from favorites</source>
-        <translation>Odstrani iz priljubljenih</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Add to favorites</source>
-        <translation>Dodaj k priljubljenim</translation>
-    </message>
 </context>
 <context>
     <name>StationSelect</name>
@@ -2166,6 +2156,16 @@ Dodala aplikacija Fahrplan. Pred potovanjem prosimo preverite točnost informaci
         <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="110"/>
         <source>Favorites</source>
         <translation>Priljubljene</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Remove from favorites</source>
+        <translation>Odstrani iz priljubljenih</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Add to favorites</source>
+        <translation>Dodaj k priljubljenim</translation>
     </message>
 </context>
 <context>

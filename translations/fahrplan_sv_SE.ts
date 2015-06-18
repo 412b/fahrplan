@@ -2078,16 +2078,6 @@ Tillagt av Fahrplan. Kolla informationen innan resan.</translation>
         <source>Adding &apos;%1&apos; to favorites</source>
         <translation>Lägger till &apos;%1&apos; till favoriter</translation>
     </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Remove from favorites</source>
-        <translation>Ta bort från favoriter</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Add to favorites</source>
-        <translation>Lägg till som favorit</translation>
-    </message>
 </context>
 <context>
     <name>StationSelect</name>
@@ -2162,6 +2152,16 @@ Tillagt av Fahrplan. Kolla informationen innan resan.</translation>
         <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="110"/>
         <source>Favorites</source>
         <translation>Favoriter</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Remove from favorites</source>
+        <translation>Ta bort från favoriter</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Add to favorites</source>
+        <translation>Lägg till som favorit</translation>
     </message>
 </context>
 <context>

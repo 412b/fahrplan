@@ -2078,16 +2078,6 @@ Von der Fahrplan App hinzugefügt. Bitte, überprüfen Sie diese Informationen n
         <source>Adding &apos;%1&apos; to favorites</source>
         <translation>%1 zu Favoriten hinzugefügt</translation>
     </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Remove from favorites</source>
-        <translation>Von Favoriten entfernen</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Add to favorites</source>
-        <translation>Zu Favoriten hinzufügen</translation>
-    </message>
 </context>
 <context>
     <name>StationSelect</name>
@@ -2162,6 +2152,16 @@ Von der Fahrplan App hinzugefügt. Bitte, überprüfen Sie diese Informationen n
         <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="110"/>
         <source>Favorites</source>
         <translation>Favoriten</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Remove from favorites</source>
+        <translation>Von Favoriten entfernen</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Add to favorites</source>
+        <translation>Zu Favoriten hinzufügen</translation>
     </message>
 </context>
 <context>

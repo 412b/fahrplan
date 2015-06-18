@@ -2079,16 +2079,6 @@ Adăugat de Fahrplan. Vă rugăm, reverificați informația înainte de călăto
         <source>Adding &apos;%1&apos; to favorites</source>
         <translation>Adăugare &apos;%1&apos; la favorite</translation>
     </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Remove from favorites</source>
-        <translation>Șterge de la favorite</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Add to favorites</source>
-        <translation>Adaugă la favorite</translation>
-    </message>
 </context>
 <context>
     <name>StationSelect</name>
@@ -2163,6 +2153,16 @@ Adăugat de Fahrplan. Vă rugăm, reverificați informația înainte de călăto
         <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="110"/>
         <source>Favorites</source>
         <translation>Favorite</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Remove from favorites</source>
+        <translation>Șterge de la favorite</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Add to favorites</source>
+        <translation>Adaugă la favorite</translation>
     </message>
 </context>
 <context>

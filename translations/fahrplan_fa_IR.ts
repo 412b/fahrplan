@@ -2075,16 +2075,6 @@ Added by Fahrplan. Please, re-check the information before your journey.</source
         <source>Adding &apos;%1&apos; to favorites</source>
         <translation>اضافه کردن &apos;٪ 1&apos; به علاقه مندی ها</translation>
     </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Remove from favorites</source>
-        <translation>حذف از علاقه مندی ها</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Add to favorites</source>
-        <translation>افزودن به علاقه مندی ها</translation>
-    </message>
 </context>
 <context>
     <name>StationSelect</name>
@@ -2159,6 +2149,16 @@ Added by Fahrplan. Please, re-check the information before your journey.</source
         <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="110"/>
         <source>Favorites</source>
         <translation>علاقه مندی ها</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Remove from favorites</source>
+        <translation>حذف از علاقه مندی ها</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Add to favorites</source>
+        <translation>افزودن به علاقه مندی ها</translation>
     </message>
 </context>
 <context>

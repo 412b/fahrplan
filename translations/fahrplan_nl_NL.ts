@@ -2078,16 +2078,6 @@ Toegevoegd door Fahrplan. Noot: controleer de informatie opnieuw vlak voordat u 
         <source>Adding &apos;%1&apos; to favorites</source>
         <translation>Bezig met toevoegen van &apos;%1&apos; aan uw favorieten</translation>
     </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Remove from favorites</source>
-        <translation>Verwijder uit favorieten</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/sailfishos/delegates/StationDelegate.qml" line="70"/>
-        <source>Add to favorites</source>
-        <translation>Voeg toe aan favorieten</translation>
-    </message>
 </context>
 <context>
     <name>StationSelect</name>
@@ -2162,6 +2152,16 @@ Toegevoegd door Fahrplan. Noot: controleer de informatie opnieuw vlak voordat u 
         <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="110"/>
         <source>Favorites</source>
         <translation>Favorieten</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Remove from favorites</source>
+        <translation>Verwijder uit favorieten</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/sailfishos/pages/StationSelectPage.qml" line="159"/>
+        <source>Add to favorites</source>
+        <translation>Voeg toe aan favorieten</translation>
     </message>
 </context>
 <context>
