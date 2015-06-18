@@ -214,7 +214,7 @@ Page {
             indicator.visible = false;
             errorMsg.text = msg;
             errorMsg.enabled = true;
-            //journeyTitle = qsTr("Error");
+            journeyTitle = qsTr("Error");
         }
     }
 
