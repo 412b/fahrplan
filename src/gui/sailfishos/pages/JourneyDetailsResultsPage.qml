@@ -42,7 +42,7 @@ Page {
 
         header: Item {
             width: parent.width
-            height: journeyStations.height - Theme.paddingLarge
+            height: journeyStations.height
 
             PageHeader {
                 id: journeyStations

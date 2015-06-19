@@ -49,7 +49,7 @@ Item {
             left: separator.right
             leftMargin: Theme.paddingMedium
             right: parent.right
-            rightMargin: Theme.paddingMedium
+            rightMargin: Theme.horizontalPageMargin
             verticalCenter: parent.verticalCenter
         }
         wrapMode: Text.WordWrap
