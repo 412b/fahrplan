@@ -41,8 +41,8 @@ Item {
                 top: parent.top
                 left: parent.left
                 right: parent.right
-                leftMargin: Theme.paddingMedium
-                rightMargin: Theme.paddingMedium
+                leftMargin: Theme.horizontalPageMargin
+                rightMargin: Theme.horizontalPageMargin
             }
 
             Row {
@@ -52,24 +52,32 @@ Item {
 
                 Label {
                     text: model.departureTime
+                    textFormat: Text.PlainText
                     width: (parent.width - 3 * 1) / 4
+                    color: contentItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 }
 
                 Label {
                     text: model.arrivalTime
+                    textFormat: Text.PlainText
                     width: (parent.width - 3 * 1) / 4
+                    color: contentItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 }
 
                 Label {
                     horizontalAlignment: Text.AlignHCenter
                     text: model.duration
+                    textFormat: Text.PlainText
                     width: (parent.width - 3 * 1) / 4
+                    color: contentItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 }
 
                 Label {
                     horizontalAlignment: Text.AlignHCenter
                     text: model.transfers
+                    textFormat: Text.PlainText
                     width: (parent.width - 3 * 1) / 4
+                    color: contentItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 }
             }
 
@@ -79,6 +87,7 @@ Item {
                 width: parent.width
                 wrapMode: Text.NoWrap
                 truncationMode: TruncationMode.Fade
+                color: contentItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
             }
 
             Label {
@@ -88,6 +97,7 @@ Item {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 font.bold: true
+                color: contentItem.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
 
         }

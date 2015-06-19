@@ -79,8 +79,8 @@ Page {
                     visible: !indicator.visible
 
                     anchors {
-                        leftMargin: Theme.paddingMedium
-                        rightMargin: Theme.paddingMedium
+                        leftMargin: Theme.horizontalPageMargin
+                        rightMargin: Theme.horizontalPageMargin
                         left: parent.left
                         right: parent.right
                         top: sectionName.bottom
